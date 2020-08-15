@@ -14,7 +14,7 @@ NEWSPIDER_MODULE = 'GitCloner.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-USER_AGENT = 'SasCezar'
+USER_AGENT = 'GitUsername'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True

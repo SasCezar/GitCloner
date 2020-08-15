@@ -8,6 +8,6 @@
 from itemadapter import ItemAdapter
 
 
-class GitclonerPipeline:
+class GitClonerPipeline:
     def process_item(self, item, spider):
         return item

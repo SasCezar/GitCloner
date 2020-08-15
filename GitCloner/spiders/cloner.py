@@ -8,7 +8,7 @@ from pathlib import Path
 import shutil
 
 
-class GitSpider(scrapy.Spider):
+class Cloner(scrapy.Spider):
     name = "git-clone"
     repo_out = "./data/repositories/"
     meta_out = "./data/metadata/"
@@ -16,7 +16,7 @@ class GitSpider(scrapy.Spider):
     api_endpoint = "https://api.github.com"
     header = "application/vnd.github.v3+json,application/vnd.github.mercy-preview+json"
 
-    clean_key = ['owner', 'organization', 'temp_clone_token']
+    clean_key = []
 
     def start_requests(self):
         # df = pandas.read_csv("./GitCloner/resources/borges_et_al_2016.csv", encoding="utf8")
@@ -46,8 +46,7 @@ class GitSpider(scrapy.Spider):
 
         dirpath = Path(path.join(self.repo_out, name))
         if dirpath.exists() and dirpath.is_dir():
-            pass
-        #    shutil.rmtree(dirpath)
+            shutil.rmtree(dirpath)
 
         with open(f"{path.join(self.meta_out, name)}.json", "w", encoding="utf8") as outf:
             outf.write(json.dumps(obj, ensure_ascii=False, indent=4))
