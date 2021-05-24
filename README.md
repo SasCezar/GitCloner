@@ -16,7 +16,7 @@ python main.py <PATH_TO_FILE> <GIT_USERNAME> <GIT_API_TOKEN>
 ```
 
 ```commandline
-scrapy crawl git-clone -s FILENAME=<PATH_TO_FILE> -sUSER_AGENT=<USERNAME> -s GIT_TOKEN=<GIT_API_TOKEN>
+scrapy crawl git-clone -s FILENAME=<PATH_TO_FILE> -s USER_AGENT=<USERNAME> -s GIT_TOKEN=<GIT_API_TOKEN>
 ```
 
-The second method allows for more control to scrapy in case you want to change some parameters.
+The second method allows for more control to scrapy in case you want to change other parameters.

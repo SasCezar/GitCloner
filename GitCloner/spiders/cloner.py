@@ -1,4 +1,5 @@
 import json
+import os
 
 import scrapy
 import pandas
@@ -15,6 +16,7 @@ class Cloner(scrapy.Spider):
 
     api_endpoint = "https://api.github.com"
     header = "application/vnd.github.v3+json,application/vnd.github.mercy-preview+json"
+    os.makedirs(meta_out, exist_ok=True)
 
     clean_key = []
 
@@ -51,7 +53,7 @@ class Cloner(scrapy.Spider):
         with open(f"{path.join(self.meta_out, name)}.json", "w", encoding="utf8") as outf:
             outf.write(json.dumps(obj, ensure_ascii=False, indent=4))
 
-        call(["git", "clone", "--depth", "1", clone_url, path.join(self.repo_out, name)])
+        # call(["git", "clone", "--depth", "1", clone_url, path.join(self.repo_out, name)])
 
     def clean(self, obj):
         for key in self.clean_key:
