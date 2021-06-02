@@ -22,7 +22,7 @@ class Cloner(scrapy.Spider):
 
     def start_requests(self):
         # df = pandas.read_csv("./GitCloner/resources/borges_et_al_2016.csv", encoding="utf8")
-        df = pandas.read_csv(f"{self.settings['FILENAME']}",  encoding="utf8")
+        df = pandas.read_csv(f"{self.settings['FILENAME']}",  encoding="utf8", usecols=['url'])
 
         try:
             urls = df['url']
