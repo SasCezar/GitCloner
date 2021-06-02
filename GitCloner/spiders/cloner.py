@@ -22,15 +22,18 @@ class Cloner(scrapy.Spider):
 
     def start_requests(self):
         # df = pandas.read_csv("./GitCloner/resources/borges_et_al_2016.csv", encoding="utf8")
-        df = pandas.read_csv(f"{self.settings['FILENAME']}", encoding="utf8")
+        df = pandas.read_csv(f"{self.settings['FILENAME']}",  encoding="utf8")
 
-        names = df['Name']
+        try:
+            urls = df['url']
+        except:
+            names = df['Name']
+            urls = [self.api_endpoint + "/repos/" + name for name in names]
         try:
             domains = df['Domain']
         except:
-            domains = [None] * len(names)
+            domains = [None] * len(urls)
 
-        urls = [self.api_endpoint + "/repos/" + name for name in names]
         for url, domain in zip(urls, domains):
             yield scrapy.Request(url=url,
                                  callback=self.parse,
